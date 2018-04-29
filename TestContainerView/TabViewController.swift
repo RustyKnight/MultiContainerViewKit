@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import PathwayKit
 
-class TabViewController: UITabBarController, EmbeddedViewController {
+class TabViewController: UITabBarController, DestinationViewController {
 
-	var embeddedNavigationController: EmbeddedNavigationController!
+	var hubController: PathwayRouter?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -7,21 +7,22 @@
 //
 
 import UIKit
+import PathwayKit
 
-class MainViewController: UIViewController, EmbeddedViewController {
+class DashboardViewController: UIViewController, DestinationViewController {
 	
 	@IBOutlet weak var tabButton: UIButton!
 
-	var embeddedNavigationController: EmbeddedNavigationController!
-	var viewController: UIViewController {
-		return self
-	}
+	var hubController: PathwayRouter?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
 	
 	@IBAction func navigateToTabView(_ sender: Any) {
-		embeddedNavigationController.navigate(to: .tabController)
+		guard let hub = hubController else {
+			fatalError("Hub controller is undefined")
+		}
+		hub.navigate(to: .tabController)
 	}
 }

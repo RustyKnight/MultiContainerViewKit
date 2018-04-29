@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PathwayKit
 
 class BaseTabViewController: UIViewController {
 	
@@ -20,13 +21,14 @@ class BaseTabViewController: UIViewController {
 
 	func navigateHome() {
 		// Navigation controller/TabBar controller
-		print("parent = \(parent)")
-		print("parent.parent = \(parent?.parent)")
-		guard let controller = parent?.parent as? EmbeddedViewController else {
+		guard let controller = parent?.parent as? DestinationViewController else {
 			return
 		}
 		print("Go home")
-		controller.embeddedNavigationController.navigate(to: .navigationContoller)
+		guard let hub = controller.hubController else {
+			fatalError("HubController is unspecified")
+		}
+		hub.navigate(to: .navigationContoller)
 	}
 	
 	@IBAction func home(_ sender: Any) {
