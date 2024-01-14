@@ -10,21 +10,26 @@ import Foundation
 import UIKit
 import PathwayKit
 
-extension PathwayDestination {
-	static let navigationContoller = PathwayDestination(identifier: "ToNavigationView")
-	static let tabController = PathwayDestination(identifier: "ToTabView")
+extension PathwayRoute {
+	static let navigationContoller = PathwayRoute(identifier: "ToNavigationView")
+	static let tabController = PathwayRoute(identifier: "ToTabView")
 }
 
 class HubContainerViewController: PathwayHubViewController {
 	override func viewDidLoad() {
-		defaultController = .navigationContoller
-		destinations = [.navigationContoller, .tabController];
 		super.viewDidLoad()
+        defaultRoute = .navigationContoller
+        avaliableRoutes = [.navigationContoller, .tabController]
 	}
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presentInitialPathway()
+    }
 	
 	// Oppurtunity to pass information to the controller
 	override func willPresent(_ viewController: UIViewController) {
-		guard var viewController = viewController as? DestinationViewController else {
+		guard let viewController = viewController as? DestinationViewController else {
 			return
 		}
 		viewController.hubController = self
@@ -40,7 +45,7 @@ class HubContainerViewController: PathwayHubViewController {
 	}
 	
 	override func didUnpresent(_ viewController: UIViewController) {
-		guard var viewController = viewController as? DestinationViewController else {
+		guard let viewController = viewController as? DestinationViewController else {
 			return
 		}
 		viewController.hubController = nil

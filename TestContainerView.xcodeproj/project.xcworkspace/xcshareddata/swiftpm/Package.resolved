@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "pathwaykit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RustyKnight/PathwayKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1cbeeae0c841cf2451ad62cdc087675def57b12f"
+      }
+    }
+  ],
+  "version" : 2
+}
